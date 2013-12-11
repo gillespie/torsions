@@ -1,0 +1,1866 @@
+(***********************************************************************
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used on any computer system with Mathematica 4.0,
+MathReader 4.0, or any compatible application. The data for the notebook 
+starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do one of 
+the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing the 
+word CacheID, otherwise Mathematica-compatible applications may try to 
+use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+***********************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[     33980,       1401]*)
+(*NotebookOutlinePosition[     34673,       1425]*)
+(*  CellTagsIndexPosition[     34629,       1421]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["\<\
+KnotTheorybyComputer
+\tReference Manual\
+\>", "Title"],
+
+Cell["Noriko Imafuji, Mitsuyuki Ochiai", "Subtitle"],
+
+Cell[TextData[{
+  StyleBox["Graduate school of human culture\nNara Women's University, \
+630-8506,\nJapan",
+    FontSize->18,
+    FontSlant->"Italic"],
+  "\n",
+  StyleBox["imafuji@ics.nara-wu.ac.jp, ochiai@ics.nara-wu.ac.jp",
+    FontSize->14,
+    FontSlant->"Italic"]
+}], "Subsubtitle"],
+
+Cell[CellGroupData[{
+
+Cell["Functions", "Section"],
+
+Cell[CellGroupData[{
+
+Cell["GetPdatabyTracking", "Subsection"],
+
+Cell[CellGroupData[{
+
+Cell["Specification", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["GetPdatabyTracking",
+    FontWeight->"Bold"],
+  "[ ",
+  StyleBox["(string PLdataFileName)",
+    FontSlant->"Italic"],
+  " ]"
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Parameters", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["(PLdataFileName)\t\t",
+    FontSlant->"Italic"],
+  "Specifies the name of PL-data file."
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Description", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["GetPdatabyTracking",
+    FontWeight->"Bold"],
+  StyleBox[" opens a window for input a knot (or link) and returns its \
+P-data. In case you specified the PL-data file name, the knot (or link) \
+diagram for the given PL-data will be appeared by right-botton click in the \
+window. In case with no data file, users can draw a knot (or link) on the \
+window by mouse-tracking. (This mouse-tracking routine is based on that of \
+Snapea by J.Weeks[1].) You can change up-down of the crossings by left-botton \
+click around the crossing, and also undo the tracking by Delete-key.  P-data \
+will be returned as an output when you close the window. This function \
+generates a file \"",
+    FontVariations->{"CompatibilityType"->0}],
+  StyleBox["MOUSETRACK.log",
+    FontWeight->"Bold",
+    FontVariations->{"CompatibilityType"->0}],
+  StyleBox["\", which have P-data (for file type, see Notes below) and \
+PL-data of the input knot (or link) diagram, and PL-data file \"",
+    FontVariations->{"CompatibilityType"->0}],
+  StyleBox["LastPLdata.pl",
+    FontWeight->"Bold",
+    FontVariations->{"CompatibilityType"->0}],
+  StyleBox["\".      ",
+    FontVariations->{"CompatibilityType"->0}]
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["External Program", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["MouseTracking.exe",
+    FontWeight->"Bold"],
+  " which includes window-processing and evaluate P-data for the input knot \
+(or link)."
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Notes", "Subsubsection"],
+
+Cell["\<\
+* The window might appear only on the menu bar for some cases. 
+* The PL-data file needs to be EOF (or 555) in the last line of the file.  
+* P-data for file type consists of 3 lines; the twice number of crossings and \
+the number of components on the first line, the twice numbers of crossingsis \
+of each components on the second, and P-word on the third.\
+\>", "Text"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["ShowKnotfromPdata", "Subsection"],
+
+Cell[CellGroupData[{
+
+Cell["Specification", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["ShowKnotfromPdata",
+    FontWeight->"Bold"],
+  "[ ",
+  StyleBox["List Pdata , (Integer s), (options)",
+    FontSlant->"Italic"],
+  "]"
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Parameters", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["Pdata",
+    FontSlant->"Italic"],
+  "\t\t\tSpecifies the P-data of the knot (or link).  \t\n(",
+  StyleBox["s)",
+    FontSlant->"Italic"],
+  "\t\t\tSpecifies an option of the number of the side-faces.\t\n",
+  StyleBox["(options)",
+    FontSlant->"Italic"],
+  "\t\tSame as ",
+  StyleBox["Mathematica",
+    FontSlant->"Italic"],
+  " ",
+  StyleBox["Show[]",
+    FontWeight->"Bold"],
+  " command.\t\t\t"
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Description", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["ShowKnotfromPdata",
+    FontWeight->"Bold"],
+  " plots the image of the knot (or link) for the given P-data. This function \
+uses a graphix command of ",
+  StyleBox["Mathematica",
+    FontSlant->"Italic"],
+  ", \"",
+  StyleBox["Show[]",
+    FontWeight->"Bold"],
+  "\"."
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["External program", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["DrawKnot.exe",
+    FontWeight->"Bold"],
+  " which calculates the coordinates of base-points on the knot (or link) \
+required for drawing it."
+}], "Text"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["ShowKnotbyOpengl", "Subsection"],
+
+Cell[CellGroupData[{
+
+Cell["Specification", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["ShowKnotbyOpengl",
+    FontWeight->"Bold"],
+  "[",
+  StyleBox["List Pdata",
+    FontSlant->"Italic"],
+  "]"
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Parameters", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["Pdata",
+    FontSlant->"Italic"],
+  "\t\t\tSpecifies the P-data of the knot (or link)."
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Description", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["ShowKnotbyOpengl",
+    FontWeight->"Bold"],
+  " opens a new window in which the knot (or link) diagram for the given \
+P-data is drawn with rendering by OpenGL. You can change outer domain by \
+left-button click around the center of the face to be set outer domain. "
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["External Program", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["KnotOgl.exe",
+    FontWeight->"Bold"],
+  " which calls",
+  StyleBox[" OpenGLKnot.exe",
+    FontWeight->"Bold"],
+  ". ",
+  StyleBox["OpenGLKnot.exe",
+    FontWeight->"Bold"],
+  " includes whole processes of drawing by OpenGL -window procedure, drawing \
+and rendering process, with using",
+  StyleBox[" OpenGLDraw.dll",
+    FontWeight->"Bold"],
+  "."
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Notes", "Subsubsection"],
+
+Cell[TextData[{
+  "* ",
+  StyleBox["OpenGLKnot.exe",
+    FontWeight->"Bold"],
+  " and ",
+  StyleBox["OpenGLDraw.dll",
+    FontWeight->"Bold"],
+  " need to be placed in the directory ",
+  StyleBox["Knot2000",
+    FontWeight->"Bold"],
+  "."
+}], "Text"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["ShowKnotFromFile", "Subsection"],
+
+Cell[CellGroupData[{
+
+Cell["Specification", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["ShowKnotFromFile",
+    FontWeight->"Bold"],
+  "[",
+  StyleBox["string PdataFileName",
+    FontSlant->"Italic"],
+  "]"
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Parameters", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["PdataFileName",
+    FontSlant->"Italic"],
+  "\tSpecifies the file name in which  P-data for file type (see ",
+  StyleBox["Notes",
+    FontWeight->"Bold"],
+  " in ",
+  StyleBox["GetPdatabyTracking",
+    FontWeight->"Bold"],
+  ") are written. "
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Description", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["ShowKnotFromFile",
+    FontWeight->"Bold"],
+  " plots the images of knots (or links) for the P-data given by a file. More \
+than one P-data can be given in the file. In this function, it calls ",
+  StyleBox["ShowKnotfromPdata",
+    FontWeight->"Bold"],
+  "."
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Notes", "Subsubsection"],
+
+Cell["\<\
+* The P-data file can hold more than one P-data, and EOF (or 555) needs to be \
+in the last line of the file.  \
+\>", "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["See Also", "Subsubsection"],
+
+Cell[TextData[StyleBox["ShowKnotfromPdata, GetPdatabyTracking.",
+  FontWeight->"Bold"]], "Text"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["KnotFromBraid", "Subsection"],
+
+Cell[CellGroupData[{
+
+Cell["Specification", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["KnotFromBraid",
+    FontWeight->"Bold"],
+  "[",
+  StyleBox["List Bword",
+    FontSlant->"Italic"],
+  "]"
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Parameters", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["Bword\t",
+    FontSlant->"Italic"],
+  "\t\t\tSpecifies a B-word of the knot (or link)."
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Description", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["KnotFromBraid",
+    FontWeight->"Bold"],
+  " returns a P-data for the given B-word."
+}], "Text"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["GetBraidRep", "Subsection"],
+
+Cell[CellGroupData[{
+
+Cell["Specification", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["GetBraidRep",
+    FontWeight->"Bold"],
+  "[",
+  StyleBox["List pdata",
+    FontSlant->"Italic"],
+  "]"
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Parameters", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["Pdata",
+    FontSlant->"Italic"],
+  "\t\tSpecifies P-data of the knot (or link)."
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Description", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["GetBraidRep",
+    FontWeight->"Bold"],
+  " returns a B-word of a braid representation for the given P-data. This \
+B-word can be obtained by doing Reidemeister-move(type 2) finite times for \
+the diagram given by P-data. Untill a braid representation is obtained, the \
+P-data still in progress is reported. "
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["External Program", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["BraidFromSc2.exe",
+    FontWeight->"Bold"],
+  " which finds a part to be done Reidemeister-move(type 2) to obtain a braid \
+representation, and does it. "
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Notes", "Subsubsection"],
+
+Cell[TextData[{
+  "* Most of the time, you can obtain a shorter B-word by doing ",
+  StyleBox["ReductionKnotLink",
+    FontWeight->"Bold"],
+  " ahead of this function."
+}], "Text"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["ShowBraid", "Subsection"],
+
+Cell[CellGroupData[{
+
+Cell["Specification", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["ShowBraid",
+    FontWeight->"Bold"],
+  "[",
+  StyleBox["List Bword, (int n), (int s)",
+    FontSlant->"Italic"],
+  "]"
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Parameters", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["Bword\t",
+    FontSlant->"Italic"],
+  "\t\tSpecifies the B-word for the knot (or link).\n",
+  StyleBox["(n)",
+    FontSlant->"Italic"],
+  "\t\tAn option for the drawing.\n",
+  StyleBox["(s)",
+    FontSlant->"Italic"],
+  "\t\tAn option for the drawing."
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Description", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["ShowBraid",
+    FontWeight->"Bold"],
+  " plots the image of the braid for the given B-word. This function uses a \
+graphix command of ",
+  StyleBox["Mathematica",
+    FontSlant->"Italic"],
+  ", ",
+  StyleBox["\"Show[]\"",
+    FontWeight->"Bold"],
+  ". Parameters n and s are options; the larger n and s are given, the \
+smoother drawing will be obtained."
+}], "Text"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["ReductionKnotLink", "Subsection"],
+
+Cell[CellGroupData[{
+
+Cell["Specification", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["ReductionKnotLink",
+    FontWeight->"Bold"],
+  "[",
+  StyleBox["List pdata",
+    FontSlant->"Italic"],
+  "]"
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Parameters", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["Pdata",
+    FontSlant->"Italic"],
+  "\t\tSpecifies a P-data of the knot (or link)."
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Description", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["ReductionKnotLink",
+    FontWeight->"Bold"],
+  " retruns a P-data of the 'simplified' knot (or link) for the given knot \
+(or link). 'Simplified' means to reduce the total number of crossings of the \
+knot (or link) diagram for the given P-data."
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["External Program", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["KnotLinkReduction.exe",
+    FontWeight->"Bold"],
+  " which reduces the total number of crossings by keeping doing wave-move \
+until it does't have any wave."
+}], "Text"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["SkeinPolynomial", "Subsection"],
+
+Cell[CellGroupData[{
+
+Cell["Specification", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["SkeinPolynomial",
+    FontWeight->"Bold"],
+  "[",
+  StyleBox["int type, List Pdata",
+    FontSlant->"Italic"],
+  "]"
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Parameters", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["type",
+    FontSlant->"Italic"],
+  "\t\tSpecifies the polinomial type to be returned. Below shows polynomials \
+and their type value.\n\n\t\t",
+  Cell[BoxData[GridBox[{
+          {"Polynomials", "types"},
+          {\(Jones\ Polynomial\), "0"},
+          {\(Two\ variable\ Jones\ Polynomial\), "1"},
+          {\(Alexander\ Polynomial\ by\ Conway\ relation\), \(-1\)},
+          {\(Conway\ Polynomial\), \(-2\)}
+          },
+        GridFrame->True,
+        RowLines->True,
+        ColumnLines->True]]],
+  "\n\n",
+  StyleBox["Pdata",
+    FontSlant->"Italic"],
+  "\t\tSpecifies a P-data of the knot (or link).\n\t\t"
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Description", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["SkeinPolynomial",
+    FontWeight->"Bold"],
+  " returns the polynomial of the type specified by ",
+  StyleBox["type ",
+    FontSlant->"Italic"],
+  "paremeter",
+  StyleBox[" ",
+    FontSlant->"Italic"],
+  "for the knot (or link) given by P-data. "
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["External Program", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["JonesPol.exe",
+    FontWeight->"Bold"],
+  " which can calculate the polynomial of type specified by value of ",
+  StyleBox["type",
+    FontSlant->"Italic"],
+  " parameter."
+}], "Text"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["KauffmanPolynomial", "Subsection"],
+
+Cell[CellGroupData[{
+
+Cell["Specification", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["KauffmanPolynomial",
+    FontWeight->"Bold"],
+  "[",
+  StyleBox["List Pdata",
+    FontSlant->"Italic"],
+  "]"
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Parameters", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["Pdata",
+    FontSlant->"Italic"],
+  "\t\tSpecifies a Pdata of the knot (or link)."
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Description", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["KauffmanPolynomial",
+    FontWeight->"Bold"],
+  " returns Kauffman polynomial for the given knot (or link)."
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["External Program", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["KauffmanPol.exe",
+    FontWeight->"Bold"],
+  " which returns the Kauffman polynomial for a P-data."
+}], "Text"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["AlexanderPolynomialbyBurauRep", "Subsection"],
+
+Cell[CellGroupData[{
+
+Cell["Specification", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["AlexanderPolynomialbyBurauRep",
+    FontWeight->"Bold"],
+  "[",
+  StyleBox["List Bword",
+    FontSlant->"Italic"],
+  "]"
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Parameters", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["Bword",
+    FontSlant->"Italic"],
+  "\t\tSpecifies a B-word of the knot (or link)."
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Description", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["AlexanderPolynomialbyBurauRep",
+    FontWeight->"Bold"],
+  " returns the Alexander polynomial by Burau representation for the knot (or \
+link) given by B-word."
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["External Program", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["BurauAlexPol.exe",
+    FontWeight->"Bold"],
+  " which returns the Alexander polynomial by Burau representation for a \
+B-word. "
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Notes", "Subsubsection"],
+
+Cell["\<\
+* Maximum length of B-word is 100, and maximum number of strings is 12. \
+Therefore characters which can be used for B-word are from A(a) to L(l). \
+\>", "Text"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["ParallelJonesPolynomial", "Subsection"],
+
+Cell[CellGroupData[{
+
+Cell["Specification", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["ParallelJonesPolynomial",
+    FontWeight->"Bold"],
+  "[",
+  StyleBox["List Bword",
+    FontSlant->"Italic"],
+  "]"
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Parameters", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["Bword\t",
+    FontSlant->"Italic"],
+  "\t\t\tSpecifies B-word of the knot (or link)."
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Description", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["ParallelJonesPolynomia",
+    FontWeight->"Bold"],
+  "l returns the Jones polynomial of 3-parallel version for the knot (or \
+link) given by B-word. "
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["External Program", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["ParallelLink.exe",
+    FontWeight->"Bold"],
+  " which returns the Jones polynomial of 3-parallel version for a B-word. \
+This program needs to use a matrix file in the directory",
+  StyleBox[" Braid_9",
+    FontWeight->"Bold"],
+  ", ",
+  StyleBox["Braid_12",
+    FontWeight->"Bold"],
+  ", or ",
+  StyleBox["Braid_15",
+    FontWeight->"Bold"],
+  ". "
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Notes", "Subsubsection"],
+
+Cell[TextData[{
+  "* This function needs memory so much. In case of lacking the memory, this \
+returns nothing. Both maximum length of B-word and number of strings depend \
+on how much memory the machine you're using has.\n* The directories ",
+  StyleBox["Braid_9",
+    FontWeight->"Bold"],
+  ",",
+  StyleBox[" Braid_12",
+    FontWeight->"Bold"],
+  ", and ",
+  StyleBox["Braid_15",
+    FontWeight->"Bold"],
+  " need to be placed in the directory Knot2000."
+}], "Text"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["JonesPolynomialbyBraid", "Subsection"],
+
+Cell[CellGroupData[{
+
+Cell["Specification", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["JonesPolynomialbyBraid",
+    FontWeight->"Bold"],
+  "[",
+  StyleBox["List Bword",
+    FontSlant->"Italic"],
+  "]"
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Parameters", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["Bword",
+    FontSlant->"Italic"],
+  "\t\tSpecifies B-word of the knot (or link)."
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Description", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["JonesPolynomialbyBraid",
+    FontWeight->"Bold"],
+  " returns the Jones polynomial by Hecke representation for the knot given \
+by B-word."
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["External Program", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["BraidRep.exe",
+    FontWeight->"Bold"],
+  " which returns the Jones polynomial by Hecke representation for the \
+B-word."
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Notes", "Subsubsection"],
+
+Cell["\<\
+* Maximum length of B-word is 100, and maximum number of strings is 12. \
+Therefore characters which can be used for B-word are from A(a) to L(l). \
+\>", "Text"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["SkeinPolynomialFromFile", "Subsection"],
+
+Cell[CellGroupData[{
+
+Cell["Specification", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["SkeinPolynomialFromFile",
+    FontWeight->"Bold"],
+  "[",
+  StyleBox["int type, string PdataFileName",
+    FontSlant->"Italic"],
+  "]"
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Parameters", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["type",
+    FontSlant->"Italic"],
+  "\t\t\tSpecifies the polinomial type to be returned. (See ",
+  StyleBox["Prameters",
+    FontWeight->"Bold"],
+  " in ",
+  StyleBox["SkeinPolynomial",
+    FontWeight->"Bold"],
+  ")\n",
+  StyleBox["PdataFileName",
+    FontSlant->"Italic"],
+  "\tSpecifies the file name in which  P-data for file type (see ",
+  StyleBox["Notes",
+    FontWeight->"Bold"],
+  "  in ",
+  StyleBox["GetPdatabyTracking",
+    FontWeight->"Bold"],
+  ") are written. "
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Description", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["SkeinPolynomialFromFile",
+    FontWeight->"Bold"],
+  " prints the polynomials of the type specified in ",
+  StyleBox["type ",
+    FontSlant->"Italic"],
+  "prameter for the knots (or links) given by P-data in the file. More than \
+one P-data can be given in the file. In this function, it calls ",
+  StyleBox["SkeinPolynomial",
+    FontWeight->"Bold"],
+  "."
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Notes", "Subsubsection"],
+
+Cell["\<\
+* The P-data file can hold more than one P-data, and EOF (or 555) needs to be \
+in the last line of the file.  \
+\>", "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["See Also", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["SkeinPolynomial",
+    FontWeight->"Bold"],
+  ", ",
+  StyleBox["GetPdatabyTracking",
+    FontWeight->"Bold"]
+}], "Text"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["JonesPolynomialbyBraidFromFile", "Subsection"],
+
+Cell[CellGroupData[{
+
+Cell["Specification", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["JonesPolynomialbyBraidFromFile",
+    FontWeight->"Bold"],
+  "[",
+  StyleBox["string BwordFileName",
+    FontSlant->"Italic"],
+  "]"
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Parameters", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["BwordFileName\t\t",
+    FontSlant->"Italic"],
+  "Specifies the file name in which B-words are written."
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Description", "Subsubsection"],
+
+Cell[TextData[{
+  StyleBox["JonesPolynomialbyBraidFromFile",
+    FontWeight->"Bold"],
+  " prints the Jones polynomial for the knots (or links) given by B-word in \
+the file. More than one B-word can be given in the file. In this function, it \
+calls ",
+  StyleBox["JonesPolynomialbyBraid",
+    FontWeight->"Bold"],
+  ". "
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Notes", "Subsubsection"],
+
+Cell["\<\
+* The B-word file can hold more than one B-word. These B-words needs to be \
+written on each line and also EOF (or 555) in the last line of the file.  
+* Maximum length of B-word is 100, and maximum number of strings is 12. \
+Therefore characters which can be used for B-word are from A(a) to L(l). \
+\>", "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["See Also", "Subsubsection"],
+
+Cell[TextData[StyleBox["JonesPolynomialbyBraid",
+  FontWeight->"Bold"]], "Text"]
+}, Open  ]]
+}, Closed]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Appendix 1 - P-data, PL-data, and B-word", "Section"],
+
+Cell[CellGroupData[{
+
+Cell["P-data ", "Subsection"],
+
+Cell[TextData[{
+  "P-data is used as a data strucure representing a knot (or link). \
+Originally P-data consists of 3 lines - the twice number of crossings and the \
+number of components on the first line, the twice numbers of crossingsis of \
+each components on the second, and P-word (mentioned later) on the third - as \
+you see in MOUSETRACK.log. We call this P-data, P-data for file type. \
+However, in order to deal with P-data much easier, we are using simplified \
+P-data in ",
+  StyleBox["Mathematica",
+    FontSlant->"Italic"],
+  ". P-data in ",
+  StyleBox["Mathematica",
+    FontSlant->"Italic"],
+  " is a list having two entries which are also lists. The first one \
+indicates the number of crossings of each components, and the second is \
+number of sequence derived from the knot (or link), called P-word. "
+}], "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["PL-data", "Subsection"],
+
+Cell["\<\
+PL-data is the data for drawing knot (or link) diagrams. Notice that with \
+same PL-data, you can obtain the same diagram, but only with P-data, you \
+cannot specify its diagram itself. \
+\>", "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["B-word", "Subsection"],
+
+Cell["\<\
+Braid is expressed by a string using symbols,called B-word.The symbols of \
+B-word are a,b,...(resp.A,B,...) for \
+sigma1,sigma2,...(resp.sigma1^-1,sigma2^-1,...).Therefore,for example,using \
+symboles between a (or A) and e (or E),you can express a 6-string braid.Check \
+this.It will be noticed that you must use A^2 for sigma1^-2.\
+\>", "Text"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Appendix 2 - Confirmation of functions and external programs \
+\>", "Section"],
+
+Cell[TextData[{
+  "This table confirms the names of functions and the corresponding external \
+programs. All of these external programs need to be placed in Knot2000. \n\n\
+",
+  Cell[BoxData[GridBox[{
+          {\(Functions\ in\ Mathematica\), \(External\ Programs\)},
+          {
+            RowBox[{
+              StyleBox["GetPdatabyTracking",
+                FontWeight->"Bold"], 
+              StyleBox["[",
+                FontWeight->"Bold"], 
+              RowBox[{"(", 
+                StyleBox["PLdataFileName",
+                  FontSlant->"Italic"], 
+                StyleBox[")",
+                  FontSlant->"Italic"]}], 
+              StyleBox["]",
+                FontWeight->"Bold"]}], \(MouseTracking . exe\)},
+          {
+            RowBox[{
+              StyleBox["ShowKnotfromPdata",
+                FontWeight->"Bold"], 
+              StyleBox["[",
+                FontWeight->"Bold"], 
+              StyleBox["Pdata",
+                FontSlant->"Italic"], 
+              StyleBox["]",
+                FontWeight->"Bold"]}], \(DrawKnot . exe\)},
+          {
+            RowBox[{
+              StyleBox["ShowKnotbyOpengl",
+                FontWeight->"Bold"], 
+              StyleBox["[",
+                FontWeight->"Bold"], 
+              StyleBox["Pdata",
+                FontSlant->"Italic"], 
+              StyleBox["]",
+                FontWeight->"Bold"]}], 
+            RowBox[{\(KnotOgl . exe\), "  ", 
+              StyleBox["*",
+                FontWeight->"Bold"], 
+              StyleBox["1",
+                FontWeight->"Bold"]}]},
+          {
+            RowBox[{
+              StyleBox["ShowKnotFromFile",
+                FontWeight->"Bold"], 
+              StyleBox["[",
+                FontWeight->"Bold"], 
+              StyleBox["PdataFileName",
+                FontSlant->"Italic"], 
+              StyleBox["]",
+                FontWeight->"Bold"]}], 
+            StyleBox[\(\(*\)\(2\)\),
+              FontWeight->"Bold"]},
+          {
+            RowBox[{
+              StyleBox["KnotFromBraid",
+                FontWeight->"Bold"], 
+              StyleBox["[",
+                FontWeight->"Bold"], 
+              StyleBox["Bword",
+                FontWeight->"Plain",
+                FontSlant->"Italic"], 
+              StyleBox["]",
+                FontWeight->"Bold"]}], \(BwordToPword . exe\)},
+          {
+            RowBox[{
+              StyleBox["GetBraidRep",
+                FontWeight->"Bold"], 
+              StyleBox["[",
+                FontWeight->"Bold"], 
+              StyleBox[
+                RowBox[{
+                  StyleBox["P",
+                    FontSlant->"Italic"], 
+                  StyleBox["data",
+                    FontWeight->"Plain",
+                    FontSlant->"Italic"]}]], 
+              StyleBox["]",
+                FontWeight->"Bold"]}], \(BraidFromSc2 . exe\)},
+          {
+            RowBox[{
+              StyleBox["ShowBraid",
+                FontWeight->"Bold"], 
+              StyleBox["[",
+                FontWeight->"Bold"], 
+              StyleBox["Bword",
+                FontWeight->"Plain",
+                FontSlant->"Italic"], 
+              StyleBox["]",
+                FontWeight->"Bold"]}], "\[Placeholder]"},
+          {
+            RowBox[{
+              StyleBox["ReductionKnotLink",
+                FontWeight->"Bold"], 
+              StyleBox["[",
+                FontWeight->"Bold"], 
+              StyleBox[
+                RowBox[{
+                  StyleBox["P",
+                    FontSlant->"Italic"], 
+                  StyleBox["data",
+                    FontWeight->"Plain",
+                    FontSlant->"Italic"]}]], 
+              StyleBox["]",
+                FontWeight->"Bold"]}], \(KnotLinkReduction . exe\)},
+          {
+            RowBox[{
+              StyleBox["SkeinPolynomial",
+                FontWeight->"Bold"], 
+              StyleBox["[",
+                FontWeight->"Bold"], 
+              StyleBox[\(type, Pdata\),
+                FontWeight->"Plain",
+                FontSlant->"Italic"], 
+              StyleBox["]",
+                FontWeight->"Bold"]}], \(JonesPol . exe\)},
+          {
+            RowBox[{
+              StyleBox["KauffmanPolynomial",
+                FontWeight->"Bold"], 
+              StyleBox["[",
+                FontWeight->"Bold"], 
+              StyleBox["Pdata",
+                FontSlant->"Italic"], 
+              StyleBox["]",
+                FontWeight->"Bold"]}], \(KauffmanPol . exe\)},
+          {
+            RowBox[{
+              StyleBox["AlexanderPolynomialbyBurauRep",
+                FontWeight->"Bold"], 
+              StyleBox["[",
+                FontWeight->"Bold"], 
+              StyleBox["Bword",
+                FontWeight->"Plain",
+                FontSlant->"Italic"], 
+              StyleBox["]",
+                FontWeight->"Bold"]}], \(BurauAlexPol . exe\)},
+          {
+            RowBox[{
+              StyleBox["ParallelJonesPolynomial",
+                FontWeight->"Bold"], 
+              StyleBox["[",
+                FontWeight->"Bold"], 
+              StyleBox["Bword",
+                FontWeight->"Plain",
+                FontSlant->"Italic"], 
+              StyleBox["]",
+                FontWeight->"Bold"]}], 
+            RowBox[{\(ParallelLink . exe\), "  ", 
+              StyleBox["*",
+                FontWeight->"Bold"], 
+              StyleBox["3",
+                FontWeight->"Bold"]}]},
+          {
+            RowBox[{
+              StyleBox["JonesPolynomialbyBraid",
+                FontWeight->"Bold"], 
+              StyleBox["[",
+                FontWeight->"Bold"], 
+              StyleBox["Bword",
+                FontWeight->"Plain",
+                FontSlant->"Italic"], 
+              StyleBox["]",
+                FontWeight->"Bold"]}], \(BraidRep . exe\)},
+          {
+            RowBox[{
+              StyleBox["SkeinPolynomialFromFile",
+                FontWeight->"Bold"], 
+              StyleBox["[",
+                FontWeight->"Bold"], 
+              StyleBox["PdataFileName",
+                FontSlant->"Italic"], 
+              StyleBox["]",
+                FontWeight->"Bold"]}], 
+            StyleBox[\(\(*\)\(4\)\),
+              FontWeight->"Bold"]},
+          {
+            RowBox[{
+              StyleBox["JonesPolynomialbyBraidFromFile",
+                FontWeight->"Bold"], 
+              StyleBox["[",
+                FontWeight->"Bold"], 
+              StyleBox["BwordFileName",
+                FontSlant->"Italic"], 
+              StyleBox["]",
+                FontWeight->"Bold"]}], 
+            StyleBox[\(\(*\)\(5\)\),
+              FontWeight->"Bold"]}
+          },
+        GridFrame->True,
+        RowLines->True,
+        ColumnLines->True]]],
+  "\n\n(Notice)\n",
+  StyleBox["*1",
+    FontWeight->"Bold"],
+  "; ",
+  StyleBox["KnotOgl.exe",
+    FontWeight->"Bold"],
+  " calls ",
+  StyleBox["OpenGLKnot.exe",
+    FontWeight->"Bold"],
+  " which needs to use ",
+  StyleBox["OpenGLDraw.dll",
+    FontWeight->"Bold"],
+  ". Be sure that these files are also placed in Knot2000.\n",
+  StyleBox["*2",
+    FontWeight->"Bold"],
+  "; ",
+  StyleBox["ShowKnotFromFile",
+    FontWeight->"Bold"],
+  " uses ",
+  StyleBox["ShowKnotfromPdata",
+    FontWeight->"Bold"],
+  " which needs DrawKnot.exe as an external program. \n",
+  StyleBox["*3",
+    FontWeight->"Bold"],
+  "; ",
+  StyleBox["ParallelLink.exe",
+    FontWeight->"Bold"],
+  " uses a matrix placed in directory Braid_9, Braid_ 12, or Braid_15. Be \
+sure that these directory are placed in Knot2000. \n",
+  StyleBox["*4",
+    FontWeight->"Bold"],
+  "; ",
+  StyleBox["SkeinPolynomialFromFile",
+    FontWeight->"Bold"],
+  " uses ",
+  StyleBox["SkeinPolynomial",
+    FontWeight->"Bold"],
+  " which needs JonesPol.exe as an external program.\n",
+  StyleBox["*5",
+    FontWeight->"Bold"],
+  "; ",
+  StyleBox["JonesPolynomialbyBraidFromFile",
+    FontWeight->"Bold"],
+  " uses ",
+  StyleBox["JonesPolynomialbyBraid",
+    FontWeight->"Bold"],
+  " which needs BraidRep.exe as an external program.\n\nAll of these \
+functions are defined in ",
+  StyleBox["knotbycomp1.m",
+    FontWeight->"Bold"],
+  "."
+}], "Text"]
+}, Closed]]
+}, Open  ]]
+},
+FrontEndVersion->"4.0 for Microsoft Windows",
+ScreenRectangle->{{0, 1024}, {0, 695}},
+WindowSize->{1016, 668},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+StyleDefinitions -> "TutorialBook.nb"
+]
+
+
+(***********************************************************************
+Cached data follows.  If you edit this Notebook file directly, not using
+Mathematica, you must remove the line containing CacheID at the top of 
+the file.  The cache data will then be recreated when you save this file 
+from within Mathematica.
+***********************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[1739, 51, 64, 3, 104, "Title"],
+Cell[1806, 56, 52, 0, 33, "Subtitle"],
+Cell[1861, 58, 287, 9, 104, "Subsubtitle"],
+
+Cell[CellGroupData[{
+Cell[2173, 71, 28, 0, 92, "Section"],
+
+Cell[CellGroupData[{
+Cell[2226, 75, 40, 0, 40, "Subsection"],
+
+Cell[CellGroupData[{
+Cell[2291, 79, 38, 0, 37, "Subsubsection"],
+Cell[2332, 81, 164, 7, 29, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[2533, 93, 35, 0, 37, "Subsubsection"],
+Cell[2571, 95, 128, 4, 28, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[2736, 104, 36, 0, 37, "Subsubsection"],
+Cell[2775, 106, 1220, 24, 111, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[4032, 135, 41, 0, 37, "Subsubsection"],
+Cell[4076, 137, 174, 5, 29, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[4287, 147, 30, 0, 37, "Subsubsection"],
+Cell[4320, 149, 381, 6, 112, "Text"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+Cell[4750, 161, 39, 0, 34, "Subsection"],
+
+Cell[CellGroupData[{
+Cell[4814, 165, 38, 0, 37, "Subsubsection"],
+Cell[4855, 167, 174, 7, 29, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[5066, 179, 35, 0, 37, "Subsubsection"],
+Cell[5104, 181, 439, 16, 92, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[5580, 202, 36, 0, 37, "Subsubsection"],
+Cell[5619, 204, 309, 11, 29, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[5965, 220, 41, 0, 37, "Subsubsection"],
+Cell[6009, 222, 181, 5, 29, "Text"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+Cell[6239, 233, 38, 0, 34, "Subsection"],
+
+Cell[CellGroupData[{
+Cell[6302, 237, 38, 0, 37, "Subsubsection"],
+Cell[6343, 239, 147, 7, 29, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[6527, 251, 35, 0, 37, "Subsubsection"],
+Cell[6565, 253, 127, 4, 28, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[6729, 262, 36, 0, 37, "Subsubsection"],
+Cell[6768, 264, 307, 6, 49, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[7112, 275, 41, 0, 37, "Subsubsection"],
+Cell[7156, 277, 389, 14, 50, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[7582, 296, 30, 0, 37, "Subsubsection"],
+Cell[7615, 298, 250, 11, 29, "Text"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+Cell[7914, 315, 38, 0, 34, "Subsection"],
+
+Cell[CellGroupData[{
+Cell[7977, 319, 38, 0, 37, "Subsubsection"],
+Cell[8018, 321, 157, 7, 29, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[8212, 333, 35, 0, 37, "Subsubsection"],
+Cell[8250, 335, 282, 10, 29, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[8569, 350, 36, 0, 37, "Subsubsection"],
+Cell[8608, 352, 298, 8, 50, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[8943, 365, 30, 0, 37, "Subsubsection"],
+Cell[8976, 367, 135, 3, 28, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[9148, 375, 33, 0, 37, "Subsubsection"],
+Cell[9184, 377, 96, 1, 29, "Text"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+Cell[9329, 384, 35, 0, 34, "Subsection"],
+
+Cell[CellGroupData[{
+Cell[9389, 388, 38, 0, 37, "Subsubsection"],
+Cell[9430, 390, 144, 7, 29, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[9611, 402, 35, 0, 37, "Subsubsection"],
+Cell[9649, 404, 127, 4, 28, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[9813, 413, 36, 0, 37, "Subsubsection"],
+Cell[9852, 415, 124, 4, 29, "Text"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+Cell[10025, 425, 33, 0, 34, "Subsection"],
+
+Cell[CellGroupData[{
+Cell[10083, 429, 38, 0, 37, "Subsubsection"],
+Cell[10124, 431, 142, 7, 29, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[10303, 443, 35, 0, 37, "Subsubsection"],
+Cell[10341, 445, 121, 4, 28, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[10499, 454, 36, 0, 37, "Subsubsection"],
+Cell[10538, 456, 349, 7, 49, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[10924, 468, 41, 0, 37, "Subsubsection"],
+Cell[10968, 470, 194, 5, 29, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[11199, 480, 30, 0, 37, "Subsubsection"],
+Cell[11232, 482, 180, 5, 29, "Text"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+Cell[11461, 493, 31, 0, 34, "Subsection"],
+
+Cell[CellGroupData[{
+Cell[11517, 497, 38, 0, 37, "Subsubsection"],
+Cell[11558, 499, 158, 7, 29, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[11753, 511, 35, 0, 37, "Subsubsection"],
+Cell[11791, 513, 292, 10, 92, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[12120, 528, 36, 0, 37, "Subsubsection"],
+Cell[12159, 530, 395, 12, 49, "Text"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+Cell[12603, 548, 39, 0, 34, "Subsection"],
+
+Cell[CellGroupData[{
+Cell[12667, 552, 38, 0, 37, "Subsubsection"],
+Cell[12708, 554, 148, 7, 29, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[12893, 566, 35, 0, 37, "Subsubsection"],
+Cell[12931, 568, 123, 4, 28, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[13091, 577, 36, 0, 37, "Subsubsection"],
+Cell[13130, 579, 286, 6, 49, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[13453, 590, 41, 0, 37, "Subsubsection"],
+Cell[13497, 592, 197, 5, 29, "Text"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+Cell[13743, 603, 37, 0, 34, "Subsection"],
+
+Cell[CellGroupData[{
+Cell[13805, 607, 38, 0, 37, "Subsubsection"],
+Cell[13846, 609, 156, 7, 29, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[14039, 621, 35, 0, 37, "Subsubsection"],
+Cell[14077, 623, 655, 19, 253, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[14769, 647, 36, 0, 37, "Subsubsection"],
+Cell[14808, 649, 285, 10, 29, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[15130, 664, 41, 0, 37, "Subsubsection"],
+Cell[15174, 666, 212, 7, 29, "Text"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+Cell[15435, 679, 40, 0, 34, "Subsection"],
+
+Cell[CellGroupData[{
+Cell[15500, 683, 38, 0, 37, "Subsubsection"],
+Cell[15541, 685, 149, 7, 29, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[15727, 697, 35, 0, 37, "Subsubsection"],
+Cell[15765, 699, 122, 4, 28, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[15924, 708, 36, 0, 37, "Subsubsection"],
+Cell[15963, 710, 148, 4, 29, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[16148, 719, 41, 0, 37, "Subsubsection"],
+Cell[16192, 721, 139, 4, 29, "Text"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+Cell[16380, 731, 51, 0, 34, "Subsection"],
+
+Cell[CellGroupData[{
+Cell[16456, 735, 38, 0, 37, "Subsubsection"],
+Cell[16497, 737, 160, 7, 29, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[16694, 749, 35, 0, 37, "Subsubsection"],
+Cell[16732, 751, 123, 4, 28, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[16892, 760, 36, 0, 37, "Subsubsection"],
+Cell[16931, 762, 200, 5, 29, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[17168, 772, 41, 0, 37, "Subsubsection"],
+Cell[17212, 774, 168, 5, 29, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[17417, 784, 30, 0, 37, "Subsubsection"],
+Cell[17450, 786, 171, 3, 28, "Text"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+Cell[17670, 795, 45, 0, 34, "Subsection"],
+
+Cell[CellGroupData[{
+Cell[17740, 799, 38, 0, 37, "Subsubsection"],
+Cell[17781, 801, 154, 7, 29, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[17972, 813, 35, 0, 37, "Subsubsection"],
+Cell[18010, 815, 125, 4, 28, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[18172, 824, 36, 0, 37, "Subsubsection"],
+Cell[18211, 826, 189, 5, 29, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[18437, 836, 41, 0, 37, "Subsubsection"],
+Cell[18481, 838, 389, 14, 50, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[18907, 857, 30, 0, 37, "Subsubsection"],
+Cell[18940, 859, 468, 13, 80, "Text"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+Cell[19457, 878, 44, 0, 34, "Subsection"],
+
+Cell[CellGroupData[{
+Cell[19526, 882, 38, 0, 37, "Subsubsection"],
+Cell[19567, 884, 153, 7, 29, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[19757, 896, 35, 0, 37, "Subsubsection"],
+Cell[19795, 898, 121, 4, 28, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[19953, 907, 36, 0, 37, "Subsubsection"],
+Cell[19992, 909, 179, 5, 29, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[20208, 919, 41, 0, 37, "Subsubsection"],
+Cell[20252, 921, 161, 5, 29, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[20450, 931, 30, 0, 37, "Subsubsection"],
+Cell[20483, 933, 171, 3, 28, "Text"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+Cell[20703, 942, 45, 0, 34, "Subsection"],
+
+Cell[CellGroupData[{
+Cell[20773, 946, 38, 0, 37, "Subsubsection"],
+Cell[20814, 948, 174, 7, 29, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[21025, 960, 35, 0, 37, "Subsubsection"],
+Cell[21063, 962, 514, 19, 61, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[21614, 986, 36, 0, 37, "Subsubsection"],
+Cell[21653, 988, 397, 11, 50, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[22087, 1004, 30, 0, 37, "Subsubsection"],
+Cell[22120, 1006, 135, 3, 28, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[22292, 1014, 33, 0, 37, "Subsubsection"],
+Cell[22328, 1016, 147, 6, 29, "Text"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+Cell[22524, 1028, 52, 0, 34, "Subsection"],
+
+Cell[CellGroupData[{
+Cell[22601, 1032, 38, 0, 37, "Subsubsection"],
+Cell[22642, 1034, 171, 7, 29, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[22850, 1046, 35, 0, 37, "Subsubsection"],
+Cell[22888, 1048, 143, 4, 28, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[23068, 1057, 36, 0, 37, "Subsubsection"],
+Cell[23107, 1059, 333, 9, 50, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[23477, 1073, 30, 0, 37, "Subsubsection"],
+Cell[23510, 1075, 323, 5, 60, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[23870, 1085, 33, 0, 37, "Subsubsection"],
+Cell[23906, 1087, 80, 1, 29, "Text"]
+}, Open  ]]
+}, Closed]]
+}, Closed]],
+
+Cell[CellGroupData[{
+Cell[24047, 1095, 59, 0, 60, "Section"],
+
+Cell[CellGroupData[{
+Cell[24131, 1099, 29, 0, 40, "Subsection"],
+Cell[24163, 1101, 833, 16, 108, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[25033, 1122, 29, 0, 40, "Subsection"],
+Cell[25065, 1124, 210, 4, 48, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[25312, 1133, 28, 0, 40, "Subsection"],
+Cell[25343, 1135, 357, 6, 68, "Text"]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+Cell[25749, 1147, 88, 2, 60, "Section"],
+Cell[25840, 1151, 8112, 246, 670, "Text"]
+}, Closed]]
+}, Open  ]]
+}
+]
+*)
+
+
+
+
+(***********************************************************************
+End of Mathematica Notebook file.
+***********************************************************************)
+

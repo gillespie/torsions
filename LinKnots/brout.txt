@@ -1,0 +1,5 @@
+Input file: br.txt
+
+1 -2 3 -4 5 -1 2 -3 -6 7, 4 -8 9 -5, 8 6 -7 -9 / +  +  +  -  -  -  -  -  -s1s1-s2-s2-s3s2-s1-s1-s2-s3s1
+=aaBBCbAABCa
+
