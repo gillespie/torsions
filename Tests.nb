@@ -1,0 +1,362 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     11792,        352]
+NotebookOptionsPosition[     11547,        339]
+NotebookOutlinePosition[     11891,        354]
+CellTagsIndexPosition[     11848,        351]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"Expect", "[", 
+    RowBox[{"val_", ",", "expr_"}], "]"}], ":=", 
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{"val", "=!=", "expr"}], ",", 
+     RowBox[{"Throw", "[", 
+      RowBox[{
+       RowBox[{"StringJoin", "[", 
+        RowBox[{"\"\<GOT UNEXPECTED VALUE \>\"", ",", 
+         RowBox[{"ToString", "[", "expr", "]"}], ",", "\"\< INSTEAD OF \>\"", 
+         ",", 
+         RowBox[{"ToString", "[", "val", "]"}]}], "]"}], ",", 
+       "\"\<assertion exception\>\""}], "]"}]}], "]"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"Expect", "[", 
+  RowBox[{"n", ",", 
+   RowBox[{"lk", "[", 
+    RowBox[{
+     RowBox[{"FramedLink", "[", 
+      RowBox[{
+       RowBox[{"Link", "[", 
+        RowBox[{"2", ",", "Alternating", ",", "1"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"n", ",", "m"}], "}"}]}], "]"}], ",", "1", ",", "1"}], 
+    "]"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Expect", "[", 
+  RowBox[{
+   RowBox[{"-", "1"}], ",", 
+   RowBox[{"lk", "[", 
+    RowBox[{
+     RowBox[{"FramedLink", "[", 
+      RowBox[{
+       RowBox[{"Link", "[", 
+        RowBox[{"2", ",", "Alternating", ",", "1"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"n", ",", "m"}], "}"}]}], "]"}], ",", "1", ",", "2"}], 
+    "]"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Expect", "[", 
+  RowBox[{"m", ",", 
+   RowBox[{"lk", "[", 
+    RowBox[{
+     RowBox[{"FramedLink", "[", 
+      RowBox[{
+       RowBox[{"Link", "[", 
+        RowBox[{"2", ",", "Alternating", ",", "1"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"n", ",", "m"}], "}"}]}], "]"}], ",", "2", ",", "2"}], 
+    "]"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Expect", "[", 
+  RowBox[{
+   RowBox[{"-", "2"}], ",", 
+   RowBox[{"lk", "[", 
+    RowBox[{
+     RowBox[{"FramedLink", "[", 
+      RowBox[{
+       RowBox[{"Link", "[", 
+        RowBox[{"4", ",", "Alternating", ",", "1"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"n", ",", "m"}], "}"}]}], "]"}], ",", "1", ",", "2"}], 
+    "]"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Expect", "[", 
+  RowBox[{"0", ",", 
+   RowBox[{"lk", "[", 
+    RowBox[{
+     RowBox[{"FramedLink", "[", 
+      RowBox[{
+       RowBox[{"Link", "[", 
+        RowBox[{"5", ",", "Alternating", ",", "1"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"n", ",", "m"}], "}"}]}], "]"}], ",", "1", ",", "2"}], 
+    "]"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Expect", "[", 
+   RowBox[{
+    RowBox[{"-", "2"}], ",", 
+    RowBox[{"lk", "[", 
+     RowBox[{
+      RowBox[{"FramedLink", "[", 
+       RowBox[{
+        RowBox[{"Link", "[", 
+         RowBox[{"7", ",", "NonAlternating", ",", "1"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"n", ",", "m"}], "}"}]}], "]"}], ",", "1", ",", "2"}], 
+     "]"}]}], "]"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"f", "[", 
+    RowBox[{"a_", ",", "b_", ",", "c_"}], "]"}], ":=", "c"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", "Unknot", " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Expect", "[", 
+  RowBox[{
+   RowBox[{
+    FractionBox[
+     RowBox[{"-", "1"}], "9"], " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"-", "1"}], "+", 
+       RowBox[{"t", "[", "1", "]"}]}], ")"}], "2"]}], ",", 
+   RowBox[{"TorsionOfSurgery", "[", 
+    RowBox[{"FramedLink", "[", 
+     RowBox[{
+      RowBox[{"Knot", "[", 
+       RowBox[{"0", ",", "1"}], "]"}], ",", 
+      RowBox[{"{", "3", "}"}]}], "]"}], "]"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Expect", "[", 
+   RowBox[{
+    RowBox[{
+     FractionBox[
+      RowBox[{"-", 
+       RowBox[{"t", "[", "1", "]"}]}], "5"], " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"-", "2"}], "+", 
+       SuperscriptBox[
+        RowBox[{"t", "[", "1", "]"}], "2"], "+", 
+       SuperscriptBox[
+        RowBox[{"t", "[", "1", "]"}], "3"]}], ")"}]}], ",", 
+    RowBox[{"TorsionOfSurgery", "[", 
+     RowBox[{"FramedLink", "[", 
+      RowBox[{
+       RowBox[{"Knot", "[", 
+        RowBox[{"0", ",", "1"}], "]"}], ",", 
+       RowBox[{"{", "5", "}"}]}], "]"}], "]"}]}], "]"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Hopf", " ", "link"}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Expect", "[", 
+   RowBox[{
+    RowBox[{
+     FractionBox["1", "9"], " ", 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"-", "1"}], "+", 
+        RowBox[{"t", "[", "2", "]"}]}], ")"}], "2"]}], ",", 
+    RowBox[{"TorsionOfSurgery", "[", 
+     RowBox[{"FramedLink", "[", 
+      RowBox[{
+       RowBox[{"Link", "[", 
+        RowBox[{"2", ",", "Alternating", ",", "1"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "4"}], "}"}]}], "]"}], "]"}]}], "]"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", "Unlink", " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"l", "=", 
+   RowBox[{"PD", "[", 
+    RowBox[{
+     RowBox[{"Loop", "[", "1", "]"}], ",", 
+     RowBox[{"Loop", "[", "2", "]"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Expect", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"-", 
+     FractionBox["1", "45"]}], " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"-", "1"}], "+", 
+       RowBox[{
+        SuperscriptBox[
+         RowBox[{"t", "[", "1", "]"}], "2"], " ", 
+        RowBox[{"t", "[", "2", "]"}]}]}], ")"}], "2"], " ", 
+    RowBox[{"(", 
+     RowBox[{"5", "+", 
+      RowBox[{"9", " ", 
+       SuperscriptBox[
+        RowBox[{"t", "[", "1", "]"}], "4"], " ", 
+       SuperscriptBox[
+        RowBox[{"t", "[", "2", "]"}], "2"]}], "+", 
+      RowBox[{"5", " ", 
+       SuperscriptBox[
+        RowBox[{"t", "[", "1", "]"}], "6"], " ", 
+       SuperscriptBox[
+        RowBox[{"t", "[", "2", "]"}], "3"]}], "+", 
+      RowBox[{"5", " ", 
+       SuperscriptBox[
+        RowBox[{"t", "[", "1", "]"}], "12"], " ", 
+       SuperscriptBox[
+        RowBox[{"t", "[", "2", "]"}], "6"]}], "+", 
+      RowBox[{"9", " ", 
+       SuperscriptBox[
+        RowBox[{"t", "[", "1", "]"}], "14"], " ", 
+       SuperscriptBox[
+        RowBox[{"t", "[", "2", "]"}], "7"]}], "+", 
+      RowBox[{"5", " ", 
+       SuperscriptBox[
+        RowBox[{"t", "[", "1", "]"}], "18"], " ", 
+       SuperscriptBox[
+        RowBox[{"t", "[", "2", "]"}], "9"]}], "+", 
+      RowBox[{"14", " ", 
+       SuperscriptBox[
+        RowBox[{"t", "[", "1", "]"}], "24"], " ", 
+       SuperscriptBox[
+        RowBox[{"t", "[", "2", "]"}], "12"]}]}], ")"}]}], ",", 
+   RowBox[{"TorsionOfSurgery", "[", 
+    RowBox[{"FramedLink", "[", 
+     RowBox[{"l", ",", 
+      RowBox[{"{", 
+       RowBox[{"5", ",", "3"}], "}"}]}], "]"}], "]"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Expect", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"-", 
+       FractionBox["1", "9"]}], " ", 
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        RowBox[{"t", "[", "1", "]"}], "+", 
+        SuperscriptBox[
+         RowBox[{"t", "[", "1", "]"}], "2"]}], ")"}], " ", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", 
+         RowBox[{"t", "[", "2", "]"}]}], ")"}], "2"]}], "-", 
+     RowBox[{
+      FractionBox["1", "9"], " ", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", 
+         RowBox[{"t", "[", "1", "]"}]}], ")"}], "2"], " ", 
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        RowBox[{"t", "[", "2", "]"}], "+", 
+        SuperscriptBox[
+         RowBox[{"t", "[", "2", "]"}], "2"]}], ")"}]}]}], ",", 
+    RowBox[{"TorsionOfSurgery", "[", 
+     RowBox[{"FramedLink", "[", 
+      RowBox[{"l", ",", 
+       RowBox[{"{", 
+        RowBox[{"3", ",", "3"}], "}"}]}], "]"}], "]"}]}], "]"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Three", " ", "link", " ", "bracelet"}], " ", 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"l", "=", 
+     RowBox[{"PD", "[", 
+      RowBox[{
+       RowBox[{"Xm", "[", 
+        RowBox[{"1", ",", "5", ",", "2", ",", "6"}], "]"}], ",", 
+       RowBox[{"Xm", "[", 
+        RowBox[{"6", ",", "2", ",", "7", ",", "3"}], "]"}], ",", 
+       RowBox[{"Xm", "[", 
+        RowBox[{"7", ",", "11", ",", "8", ",", "12"}], "]"}], ",", 
+       RowBox[{"Xm", "[", 
+        RowBox[{"10", ",", "8", ",", "11", ",", "5"}], "]"}], ",", 
+       RowBox[{"Xm", "[", 
+        RowBox[{"3", ",", "12", ",", "4", ",", "9"}], "]"}], ",", 
+       RowBox[{"Xm", "[", 
+        RowBox[{"9", ",", "4", ",", "10", ",", "1"}], "]"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Expect", "[", 
+     RowBox[{
+      RowBox[{
+       FractionBox["1", "9"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"-", "2"}], "+", 
+         FractionBox[
+          SuperscriptBox[
+           RowBox[{"t", "[", "1", "]"}], "2"], 
+          SuperscriptBox[
+           RowBox[{"t", "[", "3", "]"}], "2"]], "+", 
+         FractionBox[
+          RowBox[{"t", "[", "1", "]"}], 
+          RowBox[{"t", "[", "3", "]"}]]}], ")"}], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"-", "2"}], "+", 
+         RowBox[{"t", "[", "3", "]"}], "+", 
+         SuperscriptBox[
+          RowBox[{"t", "[", "3", "]"}], "2"]}], ")"}]}], ",", 
+      RowBox[{"TorsionOfSurgery", "[", 
+       RowBox[{"FramedLink", "[", 
+        RowBox[{"l", ",", 
+         RowBox[{"{", 
+          RowBox[{"2", ",", "2", ",", 
+           RowBox[{"-", "1"}]}], "}"}]}], "]"}], "]"}]}], "]"}]}], " ", 
+   "*)"}], 
+  RowBox[{"(*", " ", 
+   RowBox[{"L", 
+    RowBox[{"(", 
+     RowBox[{"3", ",", "1"}], ")"}], "#", "L", 
+    RowBox[{"(", 
+     RowBox[{"3", ",", "1"}], ")"}]}], " ", "*)"}]}]}], "Input",
+ CellChangeTimes->{
+  3.5973352104909897`*^9, {3.599308891938134*^9, 3.599308898574847*^9}, {
+   3.599308933201425*^9, 3.599308937821705*^9}, {3.5994287009168463`*^9, 
+   3.599428737140557*^9}, {3.5994617887934313`*^9, 3.599461852372735*^9}, {
+   3.5994619014477024`*^9, 3.599462005553891*^9}, {3.5994634176300097`*^9, 
+   3.5994635227369013`*^9}, {3.599808976935199*^9, 3.599808994224523*^9}, {
+   3.5998090545574493`*^9, 3.599809119793893*^9}, {3.5998092489208336`*^9, 
+   3.599809266759532*^9}, {3.5998104392011976`*^9, 3.599810527723218*^9}, {
+   3.599810619418498*^9, 3.599810645444025*^9}, {3.599814114207506*^9, 
+   3.5998141142645407`*^9}, {3.600113573550951*^9, 3.600113575958653*^9}, {
+   3.6004961140331173`*^9, 3.6004961298093624`*^9}, {3.600498530373907*^9, 
+   3.600498539407324*^9}, {3.600505081932106*^9, 3.6005051211520023`*^9}, {
+   3.600505179388423*^9, 3.6005051917141786`*^9}, 3.600505236260882*^9, {
+   3.6005060725654993`*^9, 3.600506078185498*^9}, {3.6005263736839294`*^9, 
+   3.6005263759705462`*^9}, {3.600756161889535*^9, 3.6007561653519835`*^9}, {
+   3.600756245528944*^9, 3.600756248883326*^9}, {3.600759881257806*^9, 
+   3.6007598931592474`*^9}, {3.600759936873314*^9, 3.6007599711566734`*^9}, {
+   3.600760228438431*^9, 3.600760256058051*^9}},
+ FontSize->9]
+},
+WindowSize->{707, 816},
+WindowMargins->{{24, Automatic}, {Automatic, 31}},
+FrontEndVersion->"9.0 for Microsoft Windows (64-bit) (January 25, 2013)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 10986, 317, 536, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)
+
